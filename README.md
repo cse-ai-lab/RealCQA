@@ -12,6 +12,7 @@ We introduce the first chart QA dataset (RealCQA) in the third category (lower s
 ### Overview 
 
 
-[![Watch the video](https://img.youtube.com/vi/AKE4AqhPLrc/maxresdefault.jpg)](https://youtu.be/AKE4AqhPLrc)
+https://github.com/cse-ai-lab/RealCQA/assets/6873582/60401ee5-1597-4e7b-b120-c1295111ba78
 
-![poster of REAL QA](https://github.com/cse-ai-lab/RealCQA/raw/master/src/figs/REALcqa_v2.svg "Real CQA")
+
+![poster of REAL QA](https://github.com/cse-ai-lab/RealCQA/blob/main/figs/REALcqa_v2.svg "Real CQA")
