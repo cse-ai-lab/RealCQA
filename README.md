@@ -3,6 +3,9 @@
 
 ### [Arxiv Link](https://arxiv.org/pdf/2308.01979.pdf)
 
+
+![Screenshot 2023-03-03 131707](https://github.com/cse-ai-lab/RealCQA/assets/6873582/3b8b0728-433d-4798-afb6-2d6cdbbb6541)
+
 Existing datasets in chart visual QA either are fully synthetic charts generated from synthetic data (right sector) or synthetic charts generated from real data (left sector). 
 
 None of these datasets handle the complexity of the distribution of real-world charts found in scientific literature. 
