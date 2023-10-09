@@ -1,8 +1,7 @@
 # RealCQA
 ## Scientific Chart Question Answering as a Test-bed for First-Order Logic
 
-### [Arxiv Link](https://arxiv.org/pdf/2308.01979.pdf)
-
+### Paper :  [Arxiv Link](https://arxiv.org/pdf/2308.01979.pdf) , [Springer Link](https://link.springer.com/chapter/10.1007/978-3-031-41682-8_5)
 
 ### Updates - 8/23
 #### To Do Checklist
@@ -123,4 +122,30 @@ https://github.com/cse-ai-lab/RealCQA/assets/6873582/60401ee5-1597-4e7b-b120-c12
 ![poster of REAL QA](https://github.com/cse-ai-lab/RealCQA/blob/main/figs/REALcqa_v2.svg "Real CQA")
 
 ---
+
+
+# Citation :
+
+```
+@InProceedings{10.1007/978-3-031-41682-8_5,
+author="Ahmed, Saleem
+and Jawade, Bhavin
+and Pandey, Shubham
+and Setlur, Srirangaraj
+and Govindaraju, Venu",
+editor="Fink, Gernot A.
+and Jain, Rajiv
+and Kise, Koichi
+and Zanibbi, Richard",
+title="RealCQA: Scientific Chart Question Answering as a Test-Bed for First-Order Logic",
+booktitle="Document Analysis and Recognition - ICDAR 2023",
+year="2023",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="66--83",
+abstract="We present a comprehensive study of chart visual question-answering(QA) task, to address the challenges faced in comprehending and extracting data from chart visualizations within documents. Despite efforts to tackle this problem using synthetic charts, solutions are limited by the shortage of annotated real-world data. To fill this gap, we introduce a benchmark and dataset for chart visual QA on real-world charts, offering a systematic analysis of the task and a novel taxonomy for template-based chart question creation. Our contribution includes the introduction of a new answer type, `list', with both ranked and unranked variations. Our study is conducted on a real-world chart dataset from scientific literature, showcasing higher visual complexity compared to other works. Our focus is on template-based QA and how it can serve as a standard for evaluating the first-order logic capabilities of models. The results of our experiments, conducted on a real-world out-of-distribution dataset, provide a robust evaluation of large-scale pre-trained models and advance the field of chart visual QA and formal logic verification for neural networks in general. Our code and dataset is publicly available (https://github.com/cse-ai-lab/RealCQA).",
+isbn="978-3-031-41682-8"
+}
+
+```
 
