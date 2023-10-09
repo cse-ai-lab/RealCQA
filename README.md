@@ -19,3 +19,70 @@ https://github.com/cse-ai-lab/RealCQA/assets/6873582/60401ee5-1597-4e7b-b120-c12
 
 
 ![poster of REAL QA](https://github.com/cse-ai-lab/RealCQA/blob/main/figs/REALcqa_v2.svg "Real CQA")
+
+
+Run CMD  ---
+
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+python -m torch.distributed.launch --nproc_per_node=4 your_script.py --img_dir /path/to/images --cjson_dir /path/to/chart/jsons --json_dir /path/to/qa/jsons --output /path/to/output
+
+
+Dataset Details ----
+
+folder structure RQA_V0.1.8.23.zip--
+
+./images                  
+./json 
+./qa
+./test_filenames.txt
+
+TOTAL -- 
+images                 : 28 k
+questions unique qa_id : 2 mil
+
+
+Total (Test) Evaluated charts/qa pairs 
+
+Sampling 1 Exhaustive                  :   9,357 / 367,139
+Sampling 2 Lower Bound removed         :   9,357 / 322,404
+Sampling 3 Lower + Upper Bound removed :   9,357 / 276,091
+Sampling 4 Upper Bound                 :   9,357 / 231,356
+Sampling 5 Flat 150                    :   9,357 / 203,735
+
+
+
+Evaluation 
+go to ./code/evaluation in github
+requires gt json and predicted json 
+ground truth json should have structure 
+[{
+    "taxonomy id": "2e", 
+    "QID": "3",
+    "question": "Where does the legend appear in the chart?",
+    "answer": "Upper Right"
+    "answer_type": "String", 
+    "qa_id": "nIHYqYHRYHET"  }  , 
+
+{} ...
+]    
+predicted output should list of jsons per groundtruth images, each json should have at least two keys : "qa_id" : the_unique_qa_id and "predicted_answer" : predicted_output_from_model
+
+[
+  {
+    "qa_id": "JMtriZKutxef",
+    "predicted_answer": "Yes"
+  },
+  {
+    "qa_id": "RDImiPEPDGAR",
+    "predicted_answer": "2"
+  },
+  {
+    "qa_id": "JJinRauejKgm",
+    "predicted_answer": "0.03"
+  },
+  {
+    "qa_id": "yEPDZLACdbwM",
+    "predicted_answer": "No"
+  },
+  {..}
+]

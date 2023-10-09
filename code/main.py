@@ -1,3 +1,3 @@
 '''
-Run this
+Run this for training 
 '''
