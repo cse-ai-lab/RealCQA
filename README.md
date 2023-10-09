@@ -29,22 +29,19 @@ python -m torch.distributed.launch --nproc_per_node=4 your_script.py --img_dir /
 
 Dataset Details ----
 
-folder structure --
+folder structure RQA_V0.1.8.23.zip--
 
-./chart-images                  #
-./chart-challenge-json 
-./realqa-json
-./realqa-json/test-id.txt
-./realqa-json/json/
+./images                  
+./json 
+./qa
+./test_filenames.txt
 
 TOTAL -- 
-images                 : 
-questions unique qa_id :
-test size --- 
-images                 : 28,266
-questions unique qa_id : 372,762
+images                 : 28 k
+questions unique qa_id : 2 mil
 
-Total Evaluated charts/qa pairs 
+
+Total (Test) Evaluated charts/qa pairs 
 
 Sampling 1 Exhaustive                  :   9,357 / 367,139
 Sampling 2 Lower Bound removed         :   9,357 / 322,404

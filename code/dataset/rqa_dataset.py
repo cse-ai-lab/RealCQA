@@ -54,6 +54,7 @@ class RQADataset(Dataset):
         print('\n In create questions')
         print('Total Images', len(self.json_files))
         print('self.train', self.train)
+        unused_count = 0
         for js in self.json_files : 
             if self.filter_test_id is not None :
                 # print('Test Data ID from :: ', self.filter_test_id)
@@ -63,6 +64,7 @@ class RQADataset(Dataset):
             
                 # print(js, self.filter_test_id[:4]) 
                 if js[:-5] not in self.filter_test_id:
+                    unused_count+=1
                     continue
                     
             #         # print('Filterintng', js)
@@ -84,6 +86,7 @@ class RQADataset(Dataset):
             self.questions.extend(jsn_list)  
         start_time = time.time() - start_time
         print(f"Elapsed time to create qs: {start_time} seconds ={start_time/60} minutes")
+        print('Total unused/used images:', unused_count, '/', len(self.json_files)-unused_count)
 
 
     def __len__(self):

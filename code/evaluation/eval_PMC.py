@@ -10,6 +10,7 @@ from ir_measures import *
 import time
 import ast 
 
+
 def get_agg_tid(tid_obj) :
     at_ = ['1', '2', '3', '4']
     agg_t = {}
@@ -65,7 +66,7 @@ def get_unranked_score(pans, gans) :
     pan = [str(_).lower() for _ in pans]
     gan = [str(_).lower() for _ in gans]
     # gan = gans[list(gans.keys())[0]]
-    print('\n get_unranked_score(pan, gan)', pan, '##-##\n', gan) 
+    # print('\n get_unranked_score(pan, gan)', pan, '##-##\n', gan) 
     relevant_items_in_collection = len(gan)
     # print('relevant_items_in_collection',relevant_items_in_collection) 
     items_retrieved = len(pan)
@@ -114,9 +115,14 @@ def get_qrel(pred_obj, gt_obj):
     # print(prel)
     return qrel, prel
 
-
+import tqdm
 def run_eval(pred_dir, gt_dir, sd=None):
     chart_files = os.listdir(gt_dir)
+    test_files = open('/home/csgrad/sahmed9/reps/RealCQA/code/data/test_filenames.txt', 'r').readlines()
+    test_files = [text.strip() for text in test_files]
+    chart_files  = [_ for _ in chart_files if _[:-5] in test_files]
+    # print(chart_files[:4])
+    # exit()
     score_obj = {
         'string_score' : {},
         'num_score' : {},
@@ -127,33 +133,30 @@ def run_eval(pred_dir, gt_dir, sd=None):
     print('In main')
     print('pred_dir', pred_dir)
     print('gt_dir :: total chart files',  gt_dir, len(chart_files))
-    count_pred = 0
-    for cix, chart in enumerate(chart_files) :
+ 
+    # exit()
+    for cix, chart in tqdm.tqdm(enumerate(chart_files)) :
         # print('\n \n Working on chart : ', chart)
         gt_js = json.load(open(os.path.join(gt_dir, chart)))
         fl_ = os.path.join(pred_dir, chart)
         # print('pred file', fl_)
-        if os.path.isfile(fl_) :
-            pr_js = json.load(open(fl_))
-            # print('\n pr_js ', pr_js)
-            pr_obj = {}
-            for pr in pr_js : 
-                pr_obj.update({pr['qa_id'] : pr})
-        else : 
-            pr_obj = None
-            count_pred+=1
-            continue
+        pr_js = json.load(open(fl_))
+        # print('\n pr_js ', pr_js)
+        pr_obj = {}
+        for pr in pr_js : 
+            pr_obj.update({pr['qa_id'] : pr})
         pred_qrel= {}
         gt_qrel= {}
         # print('Total ', len(gt_js), ' qa pairs in GT JSON List')
         # print(gt_js)
         # print('Total ', len(pr_obj), ' qa pairs in Pred JSON List')
         # print(pr_obj)
-        # if cix-count_pred > 5 :
-            # exit()
+        # exit()
         for gt in gt_js :
             gt_id = gt['qa_id']
             gt_ans = gt['answer']
+            pr_obj[gt_id]["predicted_answer"] = pr_obj[gt_id]["answer"]
+            pr_obj[gt_id]["predicted_answer"]
             pans = pr_obj[gt_id]["predicted_answer"] if (pr_obj is not None) and (gt_id in pr_obj) else None
 
             # pans = pred[i]['predicted_answer']
@@ -175,7 +178,7 @@ def run_eval(pred_dir, gt_dir, sd=None):
                     if not isinstance(pans, list):
                         try : 
                             pans = ast.literal_eval(pans)
-                            print('-------Unranked List Exception not instance list typecast -------', pans)
+                            print('-------Unranked List Exception not instance list typecast literal -------', pans)
                             score_obj['urank_score'].update({gt_id :get_unranked_score(pans, gt_ans)})
                         except : 
                             score_obj['urank_score'].update({gt_id :0})
@@ -628,6 +631,7 @@ if __name__ == "__main__":
     # pr_obj = None
     # gt_dir = 'C:/Users/spandey8/Desktop/llm_multi_modal_data/pmctest22/'
     gt_dir = "/home/csgrad/sahmed9/reps/chartinfo-cqa/dataset/cqa_22_with_id/combined"
+    pred_dir = gt_dir
     # sd = 'C:/Users/spandey8/Desktop/'
     sd = None
     # run_eval(pred_dir, gt_dir, sd, pr_obj)
